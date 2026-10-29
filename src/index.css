@@ -1,0 +1,292 @@
+@import "tailwindcss";
+
+:root {
+  --color-p5-red: #e60012;
+  --color-p5-red-bright: #ff1b2d;
+  --color-p5-red-dark: #8c000a;
+  --color-p5-black: #080808;
+  --color-p5-ink: #141414;
+  --color-p5-gray: #242424;
+  --color-p5-white: #f7f5f2;
+  --color-p5-muted: #b9b9b9;
+
+  --font-display: "Bebas Neue", sans-serif;
+  --font-impact: "Anton", sans-serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "Space Mono", monospace;
+
+  --ease-snap: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-p5: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+body {
+  background-color: var(--color-p5-black);
+  color: var(--color-p5-white);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+/* Custom Typography Utilities */
+.font-p5-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.05em;
+}
+
+.font-p5-impact {
+  font-family: var(--font-impact);
+  letter-spacing: 0.03em;
+}
+
+.font-p5-mono {
+  font-family: var(--font-mono);
+}
+
+/* Authentic Persona 5 Slanted Shapes */
+.p5-slash-left {
+  clip-path: polygon(0 0, 100% 4vw, 100% 100%, 0 calc(100% - 4vw));
+}
+
+.p5-slash-right {
+  clip-path: polygon(0 4vw, 100% 0, 100% calc(100% - 4vw), 0 100%);
+}
+
+.p5-cut-corner {
+  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+}
+
+.p5-cut-corner-lg {
+  clip-path: polygon(24px 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%, 0 24px);
+}
+
+.p5-banner-skew {
+  transform: skewX(-12deg);
+}
+
+.p5-banner-skew-rev {
+  transform: skewX(12deg);
+}
+
+/* Comic Halftone Dot Pattern & Palace Themes */
+.bg-halftone {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1.5px, transparent 1.5px);
+  background-size: 14px 14px;
+}
+
+.bg-halftone-red {
+  background-image: radial-gradient(rgba(230, 0, 18, 0.25) 1.5px, transparent 1.5px);
+  background-size: 12px 12px;
+}
+
+.bg-halftone-amber {
+  background-image: radial-gradient(rgba(255, 165, 0, 0.25) 1.5px, transparent 1.5px);
+  background-size: 12px 12px;
+}
+
+.bg-halftone-cyan {
+  background-image: radial-gradient(rgba(0, 230, 180, 0.25) 1.5px, transparent 1.5px);
+  background-size: 12px 12px;
+}
+
+.bg-halftone-purple {
+  background-image: radial-gradient(rgba(180, 90, 255, 0.28) 1.5px, transparent 1.5px);
+  background-size: 12px 12px;
+}
+
+.bg-halftone-dark {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.35) 2px, transparent 2px);
+  background-size: 10px 10px;
+}
+
+.bg-halftone-dynamic {
+  background-image: radial-gradient(var(--palace-dot-color, rgba(230, 0, 18, 0.25)) 1.5px, transparent 1.5px);
+  background-size: 12px 12px;
+  transition: background-image 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* High Contrast Hard Shadows */
+.p5-shadow-red {
+  box-shadow: 6px 6px 0px #e60012;
+}
+
+.p5-shadow-black {
+  box-shadow: 6px 6px 0px #080808;
+}
+
+.p5-shadow-white {
+  box-shadow: 5px 5px 0px #f7f5f2;
+}
+
+.p5-shadow-thick {
+  box-shadow: 8px 8px 0px #080808, 12px 12px 0px #e60012;
+}
+
+/* Diagonal speed stripe overlay */
+.bg-p5-stripes {
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 12px,
+    rgba(230, 0, 18, 0.08) 12px,
+    rgba(230, 0, 18, 0.08) 24px
+  );
+}
+
+/* Keyframes for subtle comic jitter and marquee */
+@keyframes comic-jitter {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  20% {
+    transform: translate(-1.5px, 1px) rotate(-1.5deg);
+  }
+  40% {
+    transform: translate(1.5px, -1px) rotate(1.2deg);
+  }
+  60% {
+    transform: translate(-1px, -1px) rotate(0.8deg);
+  }
+  80% {
+    transform: translate(1px, 1.5px) rotate(-1deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+.comic-jitter-hover:hover {
+  animation: comic-jitter 180ms steps(2, end) infinite;
+}
+
+/* Persona 5 Scroll Entrance Reveals */
+.p5-reveal {
+  opacity: 0;
+  transform: translateY(28px) skewY(1.5deg);
+  transition: opacity 550ms cubic-bezier(0.16, 1, 0.3, 1), transform 550ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.p5-reveal-left {
+  opacity: 0;
+  transform: translateX(-40px) skewX(-2deg);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.p5-reveal-right {
+  opacity: 0;
+  transform: translateX(40px) skewX(2deg);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.p5-reveal-visible {
+  opacity: 1 !important;
+  transform: translate(0, 0) skew(0, 0) !important;
+}
+
+@keyframes p5-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes p5-marquee-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-p5-marquee {
+  animation: p5-marquee 24s linear infinite;
+}
+
+.animate-p5-marquee-fast {
+  animation: p5-marquee 14s linear infinite;
+}
+
+.animate-p5-marquee-rev {
+  animation: p5-marquee-reverse 20s linear infinite;
+}
+
+@keyframes p5-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: p5-fade-in 180ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes p5-slide-left {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slideLeft {
+  animation: p5-slide-left 250ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Persona 5 Dungeon Divider Strike Graphic */
+@keyframes p5-strike-slash {
+  0% {
+    transform: scaleX(0) skewX(-25deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleX(1.1) skewX(-25deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1.25) skewX(-25deg);
+    opacity: 0;
+  }
+}
+
+@keyframes p5-strike-spark {
+  0% {
+    transform: scale(0.2) rotate(-15deg);
+    opacity: 0;
+  }
+  40% {
+    transform: scale(1.2) rotate(5deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.4) rotate(0deg);
+    opacity: 0;
+  }
+}
+
+.animate-p5-strike-slash {
+  animation: p5-strike-slash 450ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-p5-strike-spark {
+  animation: p5-strike-spark 500ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Accessible reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
